@@ -1,0 +1,28 @@
+{
+    "asset": "a7d9896d0d9d38a4a8ae2bb9cd5d66cb",
+    "fileName": "019e5b98-6e3c-7773-ba84-054365018877.png",
+    "prompt": "A lean, agile ninja-like speedster character for a 2D fighting game, wearing sleek futuristic fabric, side profile, dynamic pose, stylized digital art, clean white background, full body.",
+    "negativePrompt": "",
+    "model": "flux-2-dev",
+    "modelName": "Flux 2 (Dev)",
+    "customSeed": -1,
+    "w3CTraceId": "",
+    "feedback": 0,
+    "refinementMode": "Generation",
+    "pixelateTargetSize": 0,
+    "pixelateKeepImageSize": false,
+    "pixelatePixelBlockSize": 0,
+    "pixelatePixelGridSize": 0,
+    "pixelateMode": 0,
+    "pixelateOutlineThickness": 0,
+    "doodles": {
+        "m_Items": []
+    },
+    "upscaleFactor": 0,
+    "dimensions": {
+        "width": 1024,
+        "height": 1024
+    },
+    "spriteSheet": false,
+    "duration": 0.0
+}

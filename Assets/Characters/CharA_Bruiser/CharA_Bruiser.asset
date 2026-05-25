@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee46c728b3a42824b866085d7d6fcd5d, type: 3}
+  m_Name: CharA_Bruiser
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  characterName: Bruiser
+  speed: 4
+  weight: 1.5
+  jumpForce: 9
+  spriteSheet: {fileID: 2800000, guid: 90ff6e31509fbed4a8346dba81ac099d, type: 3}
+  attacks:
+  - {fileID: 11400000, guid: 48185faa225b7d54e83d5cb7a62f877e, type: 2}
+  - {fileID: 11400000, guid: 8c5e606344119de4da9e91f65754dcaa, type: 2}
