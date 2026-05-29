@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum AttackType { Light, Special }
+public enum AttackType { Light, Special, Up, Down }
 
 [CreateAssetMenu(fileName = "NewAttackData", menuName = "Fighter/AttackData")]
 public class AttackData : ScriptableObject

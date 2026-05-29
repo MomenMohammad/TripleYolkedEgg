@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     private float currentMatchTime;
     private Dictionary<int, int> playerStocks = new Dictionary<int, int>();
+    private HashSet<int> playersRespawning = new HashSet<int>();
     private bool isGameOver = false;
 
     private void Awake()
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     public void StartMatch(int playerCount)
     {
         playerStocks.Clear();
+        playersRespawning.Clear();
         for (int i = 1; i <= playerCount; i++)
         {
             playerStocks[i] = startingStocks;
@@ -63,13 +65,30 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerKilled(int playerNumber, GameObject playerObject)
     {
-        if (isGameOver) return;
+        if (playerObject == null) return;
+        if (playersRespawning.Contains(playerNumber)) return;
+
+        // If the game is already over, just hide the player and return
+        if (isGameOver)
+        {
+            playerObject.SetActive(false);
+            return;
+        }
+
+        playersRespawning.Add(playerNumber);
+
+        // Safety: ensure the player exists in the dictionary
+        if (!playerStocks.ContainsKey(playerNumber))
+        {
+            playerStocks[playerNumber] = startingStocks;
+        }
 
         playerStocks[playerNumber]--;
         Debug.Log($"Player {playerNumber} killed. Stocks left: {playerStocks[playerNumber]}");
 
         if (playerStocks[playerNumber] <= 0)
-        {
+{
+            playerObject.SetActive(false);
             CheckWinCondition();
         }
         else
@@ -80,23 +99,36 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RespawnSequence(int playerNumber, GameObject playerObject)
     {
+        if (playerObject == null) yield break;
+
         playerObject.SetActive(false);
         yield return new WaitForSeconds(respawnDelay);
         
+        // Safety: check if object still exists after delay
+        if (playerObject == null) yield break;
+
         // Reset player state
         FighterHealth health = playerObject.GetComponent<FighterHealth>();
         if (health != null) health.ResetDamage();
 
         Rigidbody2D rb = playerObject.GetComponent<Rigidbody2D>();
-        if (rb != null) rb.linearVelocity = Vector2.zero;
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+        }
 
         // Position at spawn point
-        int spawnIndex = (playerNumber - 1) % spawnPoints.Length;
-        playerObject.transform.position = spawnPoints[spawnIndex].position;
+        if (spawnPoints != null && spawnPoints.Length > 0)
+        {
+            int spawnIndex = Mathf.Clamp(playerNumber - 1, 0, spawnPoints.Length - 1);
+            playerObject.transform.position = spawnPoints[spawnIndex].position;
+        }
         
         playerObject.SetActive(true);
+        playersRespawning.Remove(playerNumber);
         
-        // TODO: Add invincibility effect
+        Debug.Log($"Player {playerNumber} respawned.");
     }
 
     private void CheckWinCondition()

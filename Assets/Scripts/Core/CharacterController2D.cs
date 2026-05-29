@@ -124,10 +124,14 @@ public class CharacterController2D : MonoBehaviour
         if (Keyboard.current != null)
         {
             float x = 0;
+            float y = 0;
             if (playerNumber == 1)
             {
                 if (Keyboard.current.dKey.isPressed) x += 1;
                 if (Keyboard.current.aKey.isPressed) x -= 1;
+                if (Keyboard.current.wKey.isPressed) y += 1;
+                if (Keyboard.current.sKey.isPressed) y -= 1;
+                
                 if (Keyboard.current.wKey.wasPressedThisFrame) InputJump();
                 if (Keyboard.current.gKey.wasPressedThisFrame) InputLightAttack();
                 if (Keyboard.current.kKey.wasPressedThisFrame) InputSpecialAttack();
@@ -137,14 +141,16 @@ public class CharacterController2D : MonoBehaviour
             {
                 if (Keyboard.current.rightArrowKey.isPressed) x += 1;
                 if (Keyboard.current.leftArrowKey.isPressed) x -= 1;
+                if (Keyboard.current.upArrowKey.isPressed) y += 1;
+                if (Keyboard.current.downArrowKey.isPressed) y -= 1;
+
                 if (Keyboard.current.upArrowKey.wasPressedThisFrame) InputJump();
                 if (Keyboard.current.numpad1Key.wasPressedThisFrame) InputLightAttack();
                 if (Keyboard.current.numpad2Key.wasPressedThisFrame) InputSpecialAttack();
                 if (Keyboard.current.numpad3Key.wasPressedThisFrame) InputDodge();
             }
 
-            if (x != 0) moveInput = new Vector2(x, 0);
-            else moveInput = Vector2.zero;
+            moveInput = new Vector2(x, y);
         }
     }
 

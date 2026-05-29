@@ -30,8 +30,8 @@ public class HUDManager : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            p1StockText.text = "Stocks: " + GameManager.Instance.GetStocks(1);
-            p2StockText.text = "Stocks: " + GameManager.Instance.GetStocks(2);
+            if (p1StockText != null) p1StockText.text = "Stocks: " + GameManager.Instance.GetStocks(1);
+            if (p2StockText != null) p2StockText.text = "Stocks: " + GameManager.Instance.GetStocks(2);
             UpdateTimer(GameManager.Instance.GetCurrentTime());
         }
     }
@@ -39,9 +39,14 @@ public class HUDManager : MonoBehaviour
     private void UpdateTimer(float time)
     {
         if (timerText == null) return;
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time % 60);
-        timerText.text = string.Format("{0:00}:{1:02}", minutes, seconds);
+        
+        // Ensure time doesn't go negative for display
+        float displayTime = Mathf.Max(0, time);
+        int minutes = Mathf.FloorToInt(displayTime / 60);
+        int seconds = Mathf.FloorToInt(displayTime % 60);
+        
+        // Fix: Changed {1:02} to {1:00} for correct seconds padding
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void UpdateDamage(int playerNum, float damage)

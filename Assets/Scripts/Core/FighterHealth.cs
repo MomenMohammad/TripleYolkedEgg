@@ -63,6 +63,11 @@ currentDamage += attack.damage;
     {
         currentDamage = 0f;
         onDamageChanged?.Invoke(currentDamage);
+        
+        if (HUDManager.Instance != null && controller != null)
+        {
+            HUDManager.Instance.UpdateDamage(controller.PlayerNumber, currentDamage);
+        }
     }
 
     public float GetCurrentDamage() => currentDamage;
