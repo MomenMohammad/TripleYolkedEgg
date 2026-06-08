@@ -28,7 +28,7 @@ public class CharacterSelectionManager : MonoBehaviour
     [SerializeField] private Image p2ReadyBtnImage;
 
     private int p1Index = 0;
-private int p2Index = 0;
+    private int p2Index = 0;
     private bool p1Ready = false;
     private bool p2Ready = false;
 
@@ -41,7 +41,7 @@ private int p2Index = 0;
     }
 
     public void P1Next()
-{
+    {
         if (p1Ready) return;
         p1Index = (p1Index + 1) % characterList.Count;
         UpdateUI();

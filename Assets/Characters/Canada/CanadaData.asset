@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee46c728b3a42824b866085d7d6fcd5d, type: 3}
+  m_Name: CanadaData
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  characterName: Canada
+  speed: 5.5
+  weight: 1.1
+  jumpForce: 11
+  spriteSheet: {fileID: 0}
+  attacks:
+  - {fileID: 11400000, guid: f69a585543a40a14eb3d7e6c5e4500cb, type: 2}
+  - {fileID: 11400000, guid: a84d0fe8712dd75439cc28dbd5028c5f, type: 2}
+  - {fileID: 11400000, guid: 898665bd483a3174ab6deff9a93c35ee, type: 2}
+  - {fileID: 11400000, guid: 91362cbd233a0c24db27f0717af42e72, type: 2}

@@ -34,5 +34,17 @@ public class SwedenController : CharacterController2D
             StartCoroutine(AttackSequence(attackToUse));
         }
     }
+
+    public override void InputSpecialAttack()
+    {
+        if (isAttacking) return;
+
+        AttackData attackToUse = FindAttack(AttackType.Special);
+        if (attackToUse != null)
+        {
+            animator.SetInteger(AttackTypeHash, 3);
+            StartCoroutine(AttackSequence(attackToUse));
+        }
+    }
 }
 
